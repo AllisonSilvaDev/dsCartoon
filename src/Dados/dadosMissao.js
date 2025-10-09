@@ -9,18 +9,18 @@ export const missoes = [
   },
   {
     id: 2,
-    titulo: "Conhecimentos Gerais",
+    titulo: "Conhecimentos Senai",
     missao: "Advinha quem eu sou",   
-    descricao: "A bola é minha! Essa frase é conhecida por qual professor(a)?",
-    respostaCorreta: "Marcia",
+    descricao: "Qual joguinho usamos para farmar todo dia",
+    respostaCorreta: "blooket",
     status: 'disponivel'
   },
   {
     id: 3,
-    titulo: "Conhecimentos Gerais",
+    titulo: "Conhecimentos Elo",
     missao: "Advinha quem eu sou",   
-    descricao: "O que é um projeto? Qual é o professor que relembra esse conceito todas vezes possíveis?",
-    respostaCorreta: "Fernanda",
+    descricao: "E a Eloisa é fei_",
+    respostaCorreta: "a",
     status: 'disponivel'
   },
   {
