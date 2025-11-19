@@ -5,10 +5,10 @@ export function Inicial() {
   const navigate = useNavigate();
 
   return (
-    <main className="w-full h-screen flex flex-col items-center justify-center p-4">
+    <main className="w-[100vw] h-screen flex flex-col items-center justify-center p-4 ">
       <img 
         src={logo} 
-        className="logo max-w-[90%] sm:max-w-[80%] max-h-[300px] object-contain mb-6" 
+        className="logo max-w-[90%] sm:max-w-[80%]  object-contain mb-6" 
         alt="Logo DS GO" 
         aria-label="Logo DS GO"
       />

@@ -9,55 +9,68 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
   const [mostrarGif, setMostrarGif] = useState(false);
 
   const verificarResposta = () => {
+    // Verifica se a resposta foi digitada
+
     if (!resposta.trim()) {
       alert("Por favor, digite uma resposta antes de enviar!");
       return;
     }
 
+    localStorage.setItem(`resposta_${missao.id}`, resposta);
+
+
+    // Compara a resposta com a resposta correta
     if (
       resposta.trim().toLowerCase() ===
       missao.respostaCorreta.trim().toLowerCase()
     ) {
+      // Resposta correta
       setResultado("Resposta correta! Parabéns!");
       setStatus("sucesso");
 
+      // Conclui a missão após 1 segundo
       setTimeout(() => {
-        onConcluir(missao.id);
+        onConcluir(missao, resposta);
       }, 1000);
+
     } else {
+      // Resposta incorreta
       setResultado("Resposta incorreta. Tente novamente!");
       setStatus("erro");
-      setMostrarGif(true);  
+      setMostrarGif(true);
 
+      // Esconde o GIF após 2 segundos
       setTimeout(() => {
         setMostrarGif(false);
       }, 2000);
     }
   };
 
+
   return (
-    <dialog 
-      open 
+    <dialog
+      open
       className="modal fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-6 z-50"
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
     >
-      <div 
+      <div
         className="bg-slate-500 p-8 rounded-3xl shadow-2xl w-full max-w-lg sm:max-w-xl md:max-w-3xl transform transition-all duration-300 scale-100 hover:scale-105 relative"
         role="document"
       >
-        <h2 
-          id="modal-title" 
+        <h2
+          id="modal-title"
           className="text-3xl font-bold text-center text-white mb-4"
         >
           {missao.titulo}
         </h2>
-        <p 
-          id="modal-description" 
+        <p
+          id="modal-description"
           className="text-center text-white mb-6"
         >
           {missao.descricao}
         </p>
+
 
         <label htmlFor="resposta" className="sr-only">
           Digite sua resposta
@@ -92,7 +105,7 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
 
         {resultado && (
           <div className="mt-6 text-center">
-            <p 
+            <p
               className={`text-lg font-semibold ${status === "sucesso" ? "text-green-400" : "text-red-500"}`}
               role="alert"
             >
@@ -110,10 +123,10 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
                 />
               )}
               {status === "sucesso" && (
-                <img 
-                  src={sucesso} 
-                  alt="Missão concluída com sucesso" 
-                  width="120" 
+                <img
+                  src={sucesso}
+                  alt="Missão concluída com sucesso"
+                  width="120"
                   className="animate-bounce"
                   aria-live="assertive"
                 />

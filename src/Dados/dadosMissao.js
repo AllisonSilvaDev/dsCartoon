@@ -1,8 +1,8 @@
 export const missoes = [
   {
     id: 1,
-    titulo: "Conhecimentos Gerais",
-    missao: "Adivinhe a palavra do comando",    
+    titulo: "Conhecimentos Senai",
+    missao: "Python",    
     descricao: "Comando para ativar a env: env/scripts/....",    
     respostaCorreta: "activate",
     status: 'disponivel' 
@@ -10,59 +10,50 @@ export const missoes = [
   {
     id: 2,
     titulo: "Conhecimentos Senai",
-    missao: "Advinha quem eu sou",   
+    missao: "Joguinho",   
     descricao: "Qual joguinho usamos para farmar todo dia",
     respostaCorreta: "blooket",
     status: 'disponivel'
   },
   {
     id: 3,
-    titulo: "Conhecimentos Elo",
-    missao: "Advinha quem eu sou",   
-    descricao: "E a Eloisa é fei_",
-    respostaCorreta: "a",
+    titulo: "Conhecimentos Tecnicos",
+    missao: "Node Modules",   
+    descricao: "Para baixar a node modules utilizamos o seguinte comando: ",
+    respostaCorreta: "npm install",
     status: 'disponivel'
   },
   {
     id: 4,
-    titulo: "Conhecimentos Gerais",
-    missao: "Advinha quem eu sou",   
-    descricao: "Hellllowwwww Sextooouuuuuuuu, é a frase favorita de qual professor?",
-    respostaCorreta: "Mariany",
+    titulo: "Conhecimentos Marcia",
+    missao: "Marcia",   
+    descricao: "Toda tabela tem chave",
+    respostaCorreta: "primaria",
     status: 'disponivel'
   },
   {
     id: 5,
     titulo: "Conhecimentos Gerais",
     missao: "Advinha quem eu sou",   
-    descricao: "E agora com vocês .... os patronos do conhecimento... Vocês",
-    respostaCorreta: "Israel",
+    descricao: "Como rodar um servidor django",
+    respostaCorreta: "python manage.py runserver ",
     status: 'disponivel'
-  }
-  ,
+  },
   {
     id: 6,
     titulo: "Conhecimentos Gerais",
-    missao: "Advinha quem eu sou",   
-    descricao: "Tem contraste? tem placeholder?",
-    respostaCorreta: "Mariany",
+    missao: "SENAI",   
+    descricao: "Qual é a melhor a sala de todos os tempos",
+    respostaCorreta: "ds12",
     status: 'disponivel'
   },
   {
     id: 7,
     titulo: "Conhecimentos Gerais",
-    missao: "O que eu sou?",   
-    descricao: "Toda tabela tem?",
-    respostaCorreta: "Chave Primaria",
+    missao: "SENAI",   
+    descricao: "",
+    respostaCorreta: "ds12",
     status: 'disponivel'
   }
-  ,
-  {
-    id: 8,
-    titulo: "Conhecimentos Gerais",
-    missao: "O que eu sou?",   
-    descricao: "Um codigo de excelecia tem .... code",
-    respostaCorreta: "Clean",
-    status: 'disponivel'
-  }
+  
 ];
