@@ -14,17 +14,21 @@ export function InventarioModal({ onClose }) {
           <ul className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {inventario.map((item) => (
               <li key={item.id} className="bg-white/20 p-4 rounded-2xl shadow-xl flex flex-col items-center border-2 border-white/30">
-                <p className="text-white text-center font-semibold text-lg">{item.titulo}</p>
-                <p className="text-white text-sm mt-2">
-                  Resposta: <span className="font-bold">{item.respostaUsuario}</span>
-                </p>
+                <img
+                  src={item.figurinha}  // Exibe a figurinha associada à missão
+                  alt={`Figurinha da Missão ${item.id}`}
+                  className="w-16 h-16 mb-2"
+                />
               </li>
             ))}
           </ul>
         )}
 
         <div className="mt-8 flex justify-center">
-          <button onClick={onClose} className="px-8 py-3 bg-gray-700 text-white font-semibold rounded-full hover:bg-gray-600 focus:outline-none transition-all duration-200">
+          <button
+            onClick={onClose}
+            className="px-8 py-3 bg-gray-700 text-white font-semibold rounded-full hover:bg-gray-600 focus:outline-none transition-all duration-200"
+          >
             Fechar Inventário
           </button>
         </div>

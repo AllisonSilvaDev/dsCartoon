@@ -1,12 +1,31 @@
 import { useState } from "react";
-import sucesso from "../assets/win.png";
-import gifPersonagem from "../assets/pngegg (1).png"; // Substitua pelo caminho do seu GIF
+import gifPersonagem from "../assets/pngegg (1).png"; // Figurinha de erro (opcional)
+import figurinha1 from "../assets/pngegg (2).png"; // Exemplo de figurinha 1
+import figurinha2 from "../assets/pngegg (1).png"; // Exemplo de figurinha 2
+import figurinha3 from "../assets/pngegg.png"; // Exemplo de figurinha 3
+
+// Array de figurinhas
+const figurinhas = [figurinha1, figurinha2, figurinha3];
 
 export function MissaoModal({ missao, onClose, onConcluir }) {
   const [resposta, setResposta] = useState("");
   const [resultado, setResultado] = useState(null);
   const [status, setStatus] = useState(null);
   const [mostrarGif, setMostrarGif] = useState(false);
+
+  // Função para escolher uma figurinha aleatória
+  const escolherFigurinhaAleatoria = () => {
+    const indiceAleatorio = Math.floor(Math.random() * figurinhas.length); // Seleciona um índice aleatório
+    return figurinhas[indiceAleatorio]; // Retorna a figurinha escolhida aleatoriamente
+  };
+
+  // Função para salvar a figurinha no localStorage junto com a missão
+  const salvarFigurinha = (missaoId, figurinha) => {
+    const inventario = JSON.parse(localStorage.getItem("inventario")) || [];
+    // Adiciona a missão e sua figurinha no inventário
+    inventario.push({ id: missaoId, figurinha });
+    localStorage.setItem("inventario", JSON.stringify(inventario));
+  };
 
   const verificarResposta = () => {
     if (!resposta.trim()) {
@@ -24,10 +43,9 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
       setResultado("Resposta correta! Parabéns!");
       setStatus("sucesso");
 
-      // Salva a missão no inventário após resposta correta
-      const inventario = JSON.parse(localStorage.getItem("inventario")) || [];
-      inventario.push({ id: missao.id, titulo: missao.titulo, respostaUsuario: resposta });
-      localStorage.setItem("inventario", JSON.stringify(inventario));
+      // Salva uma figurinha aleatória da missão no inventário
+      const figurinhaAleatoria = escolherFigurinhaAleatoria();
+      salvarFigurinha(missao.id, figurinhaAleatoria); // Agora salvamos a figurinha aleatória
 
       // Conclui a missão após 1 segundo
       setTimeout(() => {
@@ -114,15 +132,6 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
                     objectFit: "contain",
                     zIndex: 10,
                   }}
-                  aria-live="assertive"
-                />
-              )}
-              {status === "sucesso" && (
-                <img
-                  src={sucesso}
-                  alt="Missão concluída com sucesso"
-                  width="120"
-                  className="animate-bounce"
                   aria-live="assertive"
                 />
               )}
