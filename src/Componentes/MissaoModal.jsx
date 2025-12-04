@@ -11,13 +11,11 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
   const verificarResposta = () => {
     // Verifica se a resposta foi digitada
 
+    localStorage.setItem(`resposta_${missao.id}`, resposta);
     if (!resposta.trim()) {
       alert("Por favor, digite uma resposta antes de enviar!");
       return;
     }
-
-    localStorage.setItem(`resposta_${missao.id}`, resposta);
-
 
     // Compara a resposta com a resposta correta
     if (
@@ -30,9 +28,8 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
 
       // Conclui a missão após 1 segundo
       setTimeout(() => {
-        onConcluir(missao, resposta);
+        onConcluir(missao.id, resposta);
       }, 1000);
-
     } else {
       // Resposta incorreta
       setResultado("Resposta incorreta. Tente novamente!");
@@ -70,7 +67,7 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
         >
           {missao.descricao}
         </p>
-
+        
 
         <label htmlFor="resposta" className="sr-only">
           Digite sua resposta
