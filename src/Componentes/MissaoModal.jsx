@@ -1,6 +1,6 @@
 import { useState } from "react";
 import sucesso from "../assets/win.png";
-import gifPersonagem from "../assets/pngegg (1).png";  // Substitua pelo caminho do seu GIF
+import gifPersonagem from "../assets/pngegg (1).png"; // Substitua pelo caminho do seu GIF
 
 export function MissaoModal({ missao, onClose, onConcluir }) {
   const [resposta, setResposta] = useState("");
@@ -9,29 +9,31 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
   const [mostrarGif, setMostrarGif] = useState(false);
 
   const verificarResposta = () => {
-    // Verifica se a resposta foi digitada
-
-    localStorage.setItem(`resposta_${missao.id}`, resposta);
     if (!resposta.trim()) {
       alert("Por favor, digite uma resposta antes de enviar!");
       return;
     }
 
-    // Compara a resposta com a resposta correta
+    localStorage.setItem(`resposta_${missao.id}`, resposta);
+    localStorage.setItem(`titulo_${missao.titulo}`, missao.titulo);
+
+    // Comparação da resposta
     if (
-      resposta.trim().toLowerCase() ===
-      missao.respostaCorreta.trim().toLowerCase()
+      resposta.trim().toLowerCase() === missao.respostaCorreta.trim().toLowerCase()
     ) {
-      // Resposta correta
       setResultado("Resposta correta! Parabéns!");
       setStatus("sucesso");
+
+      // Salva a missão no inventário após resposta correta
+      const inventario = JSON.parse(localStorage.getItem("inventario")) || [];
+      inventario.push({ id: missao.id, titulo: missao.titulo, respostaUsuario: resposta });
+      localStorage.setItem("inventario", JSON.stringify(inventario));
 
       // Conclui a missão após 1 segundo
       setTimeout(() => {
         onConcluir(missao.id, resposta);
       }, 1000);
     } else {
-      // Resposta incorreta
       setResultado("Resposta incorreta. Tente novamente!");
       setStatus("erro");
       setMostrarGif(true);
@@ -43,7 +45,6 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
     }
   };
 
-
   return (
     <dialog
       open
@@ -51,23 +52,13 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
     >
-      <div
-        className="bg-slate-500 p-8 rounded-3xl shadow-2xl w-full max-w-lg sm:max-w-xl md:max-w-3xl transform transition-all duration-300 scale-100 hover:scale-105 relative"
-        role="document"
-      >
-        <h2
-          id="modal-title"
-          className="text-3xl font-bold text-center text-white mb-4"
-        >
+      <div className="bg-slate-500 p-8 rounded-3xl shadow-2xl w-full max-w-lg sm:max-w-xl md:max-w-3xl transform transition-all duration-300 scale-100 hover:scale-105 relative">
+        <h2 id="modal-title" className="text-3xl font-bold text-center text-white mb-4">
           {missao.titulo}
         </h2>
-        <p
-          id="modal-description"
-          className="text-center text-white mb-6"
-        >
+        <p id="modal-description" className="text-center text-white mb-6">
           {missao.descricao}
         </p>
-        
 
         <label htmlFor="resposta" className="sr-only">
           Digite sua resposta
@@ -103,7 +94,9 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
         {resultado && (
           <div className="mt-6 text-center">
             <p
-              className={`text-lg font-semibold ${status === "sucesso" ? "text-green-400" : "text-red-500"}`}
+              className={`text-lg font-semibold ${
+                status === "sucesso" ? "text-green-400" : "text-red-500"
+              }`}
               role="alert"
             >
               {resultado}
@@ -115,7 +108,12 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
                   src={gifPersonagem}
                   alt="Personagem Erro"
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"
-                  style={{ width: "80vw", height: "80vh", objectFit: "contain", zIndex: 10 }} // GIF grande, centralizado
+                  style={{
+                    width: "80vw",
+                    height: "80vh",
+                    objectFit: "contain",
+                    zIndex: 10,
+                  }}
                   aria-live="assertive"
                 />
               )}

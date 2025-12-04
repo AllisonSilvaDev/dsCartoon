@@ -6,6 +6,7 @@ import bau from '../assets/pngegg (1).png';
 import camera from '../assets/5.png';
 import { Geolocalizacao } from './Geolocalizacao'; // Importe o componente GeoLocalizacao
 import { Camera } from "./Camera";
+import { Link } from "react-router-dom";
 
 export function Menu() {
   const [abrirInventario, setAbrirInventario] = useState(false);
@@ -30,11 +31,11 @@ export function Menu() {
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[850px] px-6 py-3 rounded-3xl backdrop-blur-md bg-white/10 shadow-xl border border-white/20"
       role="navigation"
       aria-label="Menu principal">
-      
+
       {/* Verifica se há algum conteúdo a ser exibido */}
       {conteudo ? (
         <div>
-          <button 
+          <button
             onClick={voltarMenu}
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           >
@@ -45,14 +46,20 @@ export function Menu() {
       ) : (
         <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {/* Missões */}
-          <li className="flex justify-center">
-            <figure className="flex flex-col items-center text-black transition-all hover:scale-110"
-            
-            >
-              <img src={missao} className="w-16 h-16 mb-2" />
-              <figcaption>Missões</figcaption>
-            </figure>
-          </li>
+          <Link to="missao">
+            <li className="flex-1 flex justify-center">
+              <figure className="flex flex-col items-center text-white text-sm transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+                <img
+                  className="w-20 h-20 mb-2 transition-transform duration-300 hover:rotate-6"
+                  src={missao}
+                  alt="Missões"
+                />
+                <figcaption className="opacity-80 hover:opacity-100 hover:text-blue-300 transition-all duration-300">
+                  Missões
+                </figcaption>
+              </figure>
+            </li>
+          </Link>
 
           {/* Inventário (agora abre modal) */}
           <li className="flex justify-center">
