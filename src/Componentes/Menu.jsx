@@ -5,14 +5,20 @@ import mapa from '../assets/pngegg (2).png';
 import bau from '../assets/pngegg (1).png';
 import camera from '../assets/5.png';
 import { Geolocalizacao } from './Geolocalizacao'; // Importe o componente GeoLocalizacao
+import { Camera } from "./Camera";
 
 export function Menu() {
   const [abrirInventario, setAbrirInventario] = useState(false);
   const [conteudo, setConteudo] = useState(null); // Estado para controle de conteúdo exibido
 
-  // Função para mostrar GeoLocalização
+  // Função para mostrar GeoLocalizacao
   const mostrarGeoLocalizacao = () => {
     setConteudo(<Geolocalizacao />);
+  };
+
+  // Função para mostrar a Câmera
+  const mostrarCamera = () => {
+    setConteudo(<Camera onFotoTirada={(foto) => console.log(foto)} />);
   };
 
   // Função para voltar ao menu principal
@@ -40,7 +46,9 @@ export function Menu() {
         <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {/* Missões */}
           <li className="flex justify-center">
-            <figure className="flex flex-col items-center text-black transition-all hover:scale-110">
+            <figure className="flex flex-col items-center text-black transition-all hover:scale-110"
+            
+            >
               <img src={missao} className="w-16 h-16 mb-2" />
               <figcaption>Missões</figcaption>
             </figure>
@@ -69,7 +77,9 @@ export function Menu() {
 
           {/* Câmera */}
           <li className="flex justify-center">
-            <figure className="flex flex-col items-center text-black transition-all hover:scale-110">
+            <figure className="flex flex-col items-center text-black transition-all hover:scale-110 cursor-pointer"
+              onClick={mostrarCamera} // Exibe o conteúdo da Câmera
+            >
               <img src={camera} className="w-16 h-16 mb-2" />
               <figcaption>Câmera</figcaption>
             </figure>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Camera } from "../Componentes/Camera";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 

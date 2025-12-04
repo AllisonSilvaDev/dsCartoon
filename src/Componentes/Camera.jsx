@@ -43,7 +43,7 @@ export function Camera({ onFotoTirada }) {
     }
 
     return (
-        <section className="absolute inset-0 flex justify-center items-center bg-opacity-50">
+        <section className="">
             <div className="bg-white p-6 rounded-xl shadow-xl max-w-md w-full text-center">
                 <h2 className="text-3xl font-semibold text-gray-900 mb-4">Captura de Imagem</h2>
 
